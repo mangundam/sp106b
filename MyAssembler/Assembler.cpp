@@ -20,7 +20,7 @@ int aNum[30000]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16384,24576,0,1,2,3,4};
 int tempbuffer,rowcount=0,extracount=23;
 char tempcomp[50],tempdest[50],tempjump[50];
 
-int main(){
+int main(int argc,char *argv[]){
 	cout<<"start!"<<endl;
 	fstream file;
 	fstream file2;
@@ -31,13 +31,15 @@ int main(){
 	char temprow[50];
 	int extraAt=16;
 	int filelen;
-	char tempbuffer2[50];
-	cin>>filename;
+	for(int y=0;y<charlength(argv[1]);y++){
+		filename[y]=argv[1][y];
+	}
 	filelen = charlength(filename);
 	filename[filelen]='.';
 	filename[filelen+1]='a';
 	filename[filelen+2]='s';
 	filename[filelen+3]='m';
+	cout<<filename<<endl;
 	for(int x=0;x<filelen;x++){
 		filename2[x]=filename[x];
 	}
@@ -132,6 +134,7 @@ int main(){
 	}
 	}while(!file.eof());
 	file2.close();
+	return 0;
 }
 
 string dexbinary(int a){
