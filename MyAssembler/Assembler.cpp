@@ -2,14 +2,15 @@
 #include<string>
 #include<sstream>
 #include<fstream>
-#include <algorithm>
-#include <cstdlib>
-#include <stdlib.h>
+#include<algorithm>
+#include<cstdlib>
+#include<stdlib.h>
 #include<string.h> 
 using namespace std;
 string dexbinary(int);
 string intstring(int &);
 string aStonumber(string);
+int charlength(char*);
 string jump(string);
 string dest(string);
 string comp(string);
@@ -23,15 +24,30 @@ int main(){
 	cout<<"start!"<<endl;
 	fstream file;
 	fstream file2;
-	char filename[]="Pong.asm";
+	char filename[50]="";
+	char filename2[50]="";
 	char buffer[50];
 	char buffer2[50];
-	char temprow[50];	
+	char temprow[50];
 	int extraAt=16;
+	int filelen;
 	char tempbuffer2[50];
 	cin>>filename;
+	filelen = charlength(filename);
+	filename[filelen]='.';
+	filename[filelen+1]='a';
+	filename[filelen+2]='s';
+	filename[filelen+3]='m';
+	for(int x=0;x<filelen;x++){
+		filename2[x]=filename[x];
+	}
+	filename2[filelen]='.';
+	filename2[filelen+1]='h';
+	filename2[filelen+2]='a';
+	filename2[filelen+3]='c';
+	filename2[filelen+4]='k';
 	file.open(filename,ios::in);
-	file2.open("Ping.txt",ios::out);
+	file2.open(filename2,ios::out);
 		do{
 		file.getline(buffer,sizeof(buffer));
 		rowcount++;
@@ -187,4 +203,12 @@ string jump(string a){
 	}
 	return "Wrong";
 	
+}
+
+int charlength(char* a){
+	int i=0;
+	do{
+		i++;
+	}while(a[i]!='\0');
+	return i;
 }
